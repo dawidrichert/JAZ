@@ -1,6 +1,6 @@
 package com.dawidrichert.models;
 
-import com.dawidrichert.enums.InstallmentsType;
+import com.dawidrichert.models.enums.InstallmentsType;
 
 public class CreditData {
 

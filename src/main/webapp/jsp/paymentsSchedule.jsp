@@ -1,10 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE HTML>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
         <title>Kalkulator rat kredytu</title>
+        <link rel="icon" type="image/png" href="../img/favicon.png" />
         <link rel="stylesheet" href="../css/bootstrap.min.css">
         <script src="../js/jquery-1.12.1.min.js"></script>
         <script src="../js/bootstrap.min.js"></script>       
@@ -21,7 +23,7 @@
                 <input type="hidden" id="installmentsType" name="installmentsType" value="<%= request.getParameter("installmentsType") %>">
 
                 <div class="form-group pull-left">
-                    <a class="btn btn-primary" href="/">< Powróć do formularza</a>
+                    <a class="btn btn-primary" href="${pageContext.request.contextPath}/">< Powróć do formularza</a>
                 </div>
                 <div class="form-group pull-right">
                     <input class="btn btn-danger" type="submit" value="Generuj PDF"/>
@@ -39,10 +41,10 @@
                     <c:forEach var="paymentsScheduleItem" items="${paymentsScheduleList}">
                         <tr>
                             <td>${paymentsScheduleItem.installmentNumber}</td>
-                            <td>${paymentsScheduleItem.capitalAmount}</td>
-                            <td>${paymentsScheduleItem.interestAmount}</td>
-                            <td>${paymentsScheduleItem.fixedFee}</td>
-                            <td><strong>${paymentsScheduleItem.totalPaymentsAmount}</strong></td>
+                            <td><fmt:formatNumber type="number" minFractionDigits="2" maxFractionDigits="2" value="${paymentsScheduleItem.capitalAmount}"/></td>
+                            <td><fmt:formatNumber type="number" minFractionDigits="2" maxFractionDigits="2" value="${paymentsScheduleItem.interestAmount}"/></td>
+                            <td><fmt:formatNumber type="number" minFractionDigits="2" maxFractionDigits="2" value="${paymentsScheduleItem.fixedFee}"/></td>
+                            <td><strong><fmt:formatNumber type="number" value="${paymentsScheduleItem.totalPaymentsAmount}"/></strong></td>
                         </tr>
                     </c:forEach>
                 </table>

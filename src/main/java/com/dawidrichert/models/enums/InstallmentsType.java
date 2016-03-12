@@ -1,4 +1,4 @@
-package com.dawidrichert.enums;
+package com.dawidrichert.models.enums;
 
 public enum InstallmentsType {
     DECREASING, CONSTANT

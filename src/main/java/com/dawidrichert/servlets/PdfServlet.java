@@ -2,8 +2,8 @@ package com.dawidrichert.servlets;
 
 import com.dawidrichert.models.CreditData;
 import com.dawidrichert.models.PaymentsScheduleItem;
-import com.dawidrichert.services.CreditService;
-import com.dawidrichert.utils.Mapper;
+import com.dawidrichert.services.CreditCalculationService;
+import com.dawidrichert.utils.RequestMapper;
 import com.itextpdf.text.*;
 import com.itextpdf.text.pdf.BaseFont;
 import com.itextpdf.text.pdf.PdfPCell;
@@ -21,20 +21,19 @@ import java.util.List;
 @WebServlet("/pdf")
 public class PdfServlet extends HttpServlet {
 
-    CreditService creditService = new CreditService();
+    CreditCalculationService creditCalculationService = new CreditCalculationService();
 
-    private static BaseFont baseFont;
     private static Font font;
 
     public PdfServlet() throws IOException, DocumentException {
-        baseFont = BaseFont.createFont(BaseFont.HELVETICA, BaseFont.CP1250, BaseFont.EMBEDDED);
+        BaseFont baseFont = BaseFont.createFont(BaseFont.HELVETICA, BaseFont.CP1250, BaseFont.EMBEDDED);
         font = new Font(baseFont, 12, Font.NORMAL);
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        CreditData creditData = Mapper.mapRequestToCreditData(req);
-        List<PaymentsScheduleItem> paymentsScheduleItems = creditService.calculate(creditData);
+        CreditData creditData = RequestMapper.mapToCreditData(req);
+        List<PaymentsScheduleItem> paymentsScheduleItems = creditCalculationService.calculate(creditData);
         generatePdf(resp, paymentsScheduleItems);
     }
 

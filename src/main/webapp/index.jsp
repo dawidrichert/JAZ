@@ -4,6 +4,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
         <title>Kalkulator rat kredytu</title>
+        <link rel="icon" type="image/png" href="../img/favicon.png" />
         <link rel="stylesheet" href="../css/bootstrap.min.css">
         <link rel="stylesheet" href="../css/app.css">
         <script src="../js/jquery-1.12.1.min.js"></script>
@@ -17,15 +18,15 @@
                 <form action="harmonogram" method="post" role="form">
                     <div class="form-group">
                         <label for="requestedCreditAmount">Wnioskowana kwota kredytu</label>
-                        <input class="form-control" type="number" step="any" min="0" id="requestedCreditAmount" name="requestedCreditAmount" required/>
+                        <input class="form-control" type="number" step="any" min="500" max="9999999999" id="requestedCreditAmount" name="requestedCreditAmount" required/>
                     </div>
                     <div class="form-group">
                         <label for="installmentsNumber">Ilość rat</label>
-                        <input class="form-control" type="number" min="0" id="installmentsNumber" name="installmentsNumber" required/>
+                        <input class="form-control" type="number" min="1" max="1200" id="installmentsNumber" name="installmentsNumber" required/>
                     </div>
                     <div class="form-group">
                         <label for="rateOfInterest">Oprocentowanie</label>
-                        <input class="form-control" type="number" step="any" min="0" id="rateOfInterest" name="rateOfInterest" required/>
+                        <input class="form-control" type="number" step="any" min="0" max="50" id="rateOfInterest" name="rateOfInterest" required/>
                     </div>
                     <div class="form-group">
                         <label for="fixedFee">Opłata stała</label>

@@ -2,8 +2,8 @@ package com.dawidrichert.servlets;
 
 import com.dawidrichert.models.CreditData;
 import com.dawidrichert.models.PaymentsScheduleItem;
-import com.dawidrichert.services.CreditService;
-import com.dawidrichert.utils.Mapper;
+import com.dawidrichert.services.CreditCalculationService;
+import com.dawidrichert.utils.RequestMapper;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -15,9 +15,9 @@ import java.io.IOException;
 import java.util.List;
 
 @WebServlet("/harmonogram")
-public class CalculateServlet extends HttpServlet {
+public class ScheduleServlet extends HttpServlet {
 
-    CreditService creditService = new CreditService();
+    CreditCalculationService creditCalculationService = new CreditCalculationService();
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -26,8 +26,8 @@ public class CalculateServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        CreditData creditData = Mapper.mapRequestToCreditData(req);
-        List<PaymentsScheduleItem> paymentsScheduleItems = creditService.calculate(creditData);
+        CreditData creditData = RequestMapper.mapToCreditData(req);
+        List<PaymentsScheduleItem> paymentsScheduleItems = creditCalculationService.calculate(creditData);
         forwardPaymentsSchedule(req, resp, paymentsScheduleItems);
     }
 
