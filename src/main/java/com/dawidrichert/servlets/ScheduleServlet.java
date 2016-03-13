@@ -27,7 +27,6 @@ public class ScheduleServlet extends HttpServlet {
             req.getRequestDispatcher("index.jsp").forward(req, resp);
             return;
         }
-        req.setAttribute("message", null);
         List<PaymentsScheduleItem> paymentsScheduleItems = creditCalculationService.calculate(creditData);
         forwardPaymentsSchedule(req, resp, paymentsScheduleItems);
     }

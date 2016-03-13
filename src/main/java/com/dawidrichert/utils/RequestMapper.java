@@ -12,11 +12,11 @@ public class RequestMapper {
     public static CreditData mapToCreditData(HttpServletRequest req) {
         try {
             return new CreditData(
-                    ServletRequestUtils.getDoubleParameter(req, "requestedCreditAmount"),
-                    ServletRequestUtils.getIntParameter(req, "installmentsNumber"),
-                    ServletRequestUtils.getDoubleParameter(req, "rateOfInterest"),
-                    ServletRequestUtils.getDoubleParameter(req, "fixedFee"),
-                    InstallmentsType.values()[ServletRequestUtils.getIntParameter(req, "installmentsType")]);
+                    ServletRequestUtils.getDoubleParameter(req, CreditData.requestedCreditAmountKey),
+                    ServletRequestUtils.getIntParameter(req, CreditData.installmentsNumberKey),
+                    ServletRequestUtils.getDoubleParameter(req, CreditData.rateOfInterestKey),
+                    ServletRequestUtils.getDoubleParameter(req, CreditData.fixedFeeKey),
+                    InstallmentsType.values()[ServletRequestUtils.getIntParameter(req, CreditData.installmentsTypeKey)]);
         } catch (ServletRequestBindingException e) {
             return null;
         }

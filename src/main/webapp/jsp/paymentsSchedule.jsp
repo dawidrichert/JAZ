@@ -1,3 +1,4 @@
+<%@ page import="com.dawidrichert.models.CreditData" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
@@ -16,12 +17,11 @@
             <h2>Harmonogram spłat</h2>
             </br>
             <form action="/pdf" method="post" id="employeeForm" role="form" >
-                <input type="hidden" id="requestedCreditAmount" name="requestedCreditAmount" value="<%= request.getParameter("requestedCreditAmount") %>">
-                <input type="hidden" id="installmentsNumber" name="installmentsNumber" value="<%= request.getParameter("installmentsNumber") %>">
-                <input type="hidden" id="rateOfInterest" name="rateOfInterest" value="<%= request.getParameter("rateOfInterest") %>">
-                <input type="hidden" id="fixedFee" name="fixedFee" value="<%= request.getParameter("fixedFee") %>">
-                <input type="hidden" id="installmentsType" name="installmentsType" value="<%= request.getParameter("installmentsType") %>">
-
+                <input type="hidden" id="<%=CreditData.requestedCreditAmountKey%>" name="<%=CreditData.requestedCreditAmountKey%>" value="<%= request.getParameter(CreditData.requestedCreditAmountKey) %>">
+                <input type="hidden" id="<%=CreditData.installmentsNumberKey%>" name="<%=CreditData.installmentsNumberKey%>" value="<%= request.getParameter(CreditData.installmentsNumberKey) %>">
+                <input type="hidden" id="<%=CreditData.rateOfInterestKey%>" name="<%=CreditData.rateOfInterestKey%>" value="<%= request.getParameter(CreditData.rateOfInterestKey) %>">
+                <input type="hidden" id="<%=CreditData.fixedFeeKey%>" name="<%=CreditData.fixedFeeKey%>" value="<%= request.getParameter(CreditData.fixedFeeKey) %>">
+                <input type="hidden" id="<%=CreditData.installmentsTypeKey%>" name="<%=CreditData.installmentsTypeKey%>" value="<%= request.getParameter(CreditData.installmentsTypeKey) %>">
                 <div class="form-group pull-left">
                     <a class="btn btn-primary" href="${pageContext.request.contextPath}/">< Powróć do formularza</a>
                 </div>

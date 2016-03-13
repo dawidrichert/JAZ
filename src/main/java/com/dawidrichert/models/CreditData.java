@@ -10,6 +10,12 @@ public class CreditData {
     private double fixedFee;
     private InstallmentsType installmentsType;
 
+    public static final String requestedCreditAmountKey = "requestedCreditAmount";
+    public static final String installmentsNumberKey = "installmentsNumber";
+    public static final String rateOfInterestKey = "rateOfInterest";
+    public static final String fixedFeeKey = "fixedFee";
+    public static final String installmentsTypeKey = "installmentsType";
+
     public CreditData() { }
 
     public CreditData(double requestedCreditAmount, int installmentsNumber, double rateOfInterest, double fixedFee, InstallmentsType installmentsType) {

@@ -1,4 +1,5 @@
 ﻿<%@ page import="com.dawidrichert.utils.JspHelpers" %>
+<%@ page import="com.dawidrichert.models.CreditData" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE HTML>
@@ -32,29 +33,29 @@
                         </c:otherwise>
                     </c:choose>
                     <div class="form-group">
-                        <label for="requestedCreditAmount">Wnioskowana kwota kredytu</label>
-                        <input value="<%=JspHelpers.emptyIfNull(request.getParameter("requestedCreditAmount"))%>" class="form-control" type="number" step="any" min="500" max="9999999999" id="requestedCreditAmount" name="requestedCreditAmount" required/>
+                        <label for="<%=CreditData.requestedCreditAmountKey%>">Wnioskowana kwota kredytu</label>
+                        <input value="<%=JspHelpers.emptyIfNull(request.getParameter("requestedCreditAmount"))%>" class="form-control" type="number" step="any" min="500" max="9999999999" id="<%=CreditData.requestedCreditAmountKey%>" name="<%=CreditData.requestedCreditAmountKey%>" required/>
                     </div>
                     <div class="form-group">
-                        <label for="installmentsNumber">Ilość rat</label>
-                        <input value="<%=JspHelpers.emptyIfNull(request.getParameter("installmentsNumber"))%>" class="form-control" type="number" min="1" max="1200" id="installmentsNumber" name="installmentsNumber" required/>
+                        <label for="<%=CreditData.installmentsNumberKey%>">Ilość rat</label>
+                        <input value="<%=JspHelpers.emptyIfNull(request.getParameter("installmentsNumber"))%>" class="form-control" type="number" min="1" max="1200" id="<%=CreditData.installmentsNumberKey%>" name="<%=CreditData.installmentsNumberKey%>" required/>
                     </div>
                     <div class="form-group">
-                        <label for="rateOfInterest">Oprocentowanie</label>
-                        <input value="<%=JspHelpers.emptyIfNull(request.getParameter("rateOfInterest"))%>" class="form-control" type="number" step="any" min="0" max="50" id="rateOfInterest" name="rateOfInterest" required/>
+                        <label for="<%=CreditData.rateOfInterestKey%>">Oprocentowanie</label>
+                        <input value="<%=JspHelpers.emptyIfNull(request.getParameter("rateOfInterest"))%>" class="form-control" type="number" step="any" min="0" max="50" id="<%=CreditData.rateOfInterestKey%>" name="<%=CreditData.rateOfInterestKey%>" required/>
                     </div>
                     <div class="form-group">
-                        <label for="fixedFee">Opłata stała</label>
-                        <input value="<%=JspHelpers.emptyIfNull(request.getParameter("fixedFee"))%>" class="form-control" type="number" step="any" min="0" id="fixedFee" name="fixedFee" required/>
+                        <label for="<%=CreditData.fixedFeeKey%>">Opłata stała</label>
+                        <input value="<%=JspHelpers.emptyIfNull(request.getParameter("fixedFee"))%>" class="form-control" type="number" step="any" min="0" id="<%=CreditData.fixedFeeKey%>" name="<%=CreditData.fixedFeeKey%>" required/>
                     </div>
                     <div class="form-group">
                         <label for="installmentsType1">Rodzaj rat</label>
                         <div class="form-group">
                             <label class="radio-inline">
-                              <input type="radio" name="installmentsType" id="installmentsType1" value="0" checked> malejąca
+                              <input type="radio" name="<%=CreditData.installmentsTypeKey%>" id="installmentsType1" value="0" checked> malejąca
                             </label>
                             <label class="radio-inline">
-                              <input type="radio" name="installmentsType" id="installmentsType2" value="1"> stała
+                              <input type="radio" name="<%=CreditData.installmentsTypeKey%>" id="installmentsType2" value="1"> stała
                             </label>
                         </div>
                     </div>
