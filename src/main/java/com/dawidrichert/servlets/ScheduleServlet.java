@@ -4,6 +4,7 @@ import com.dawidrichert.models.CreditData;
 import com.dawidrichert.models.PaymentsScheduleItem;
 import com.dawidrichert.services.CreditCalculationService;
 import com.dawidrichert.utils.RequestMapper;
+import com.dawidrichert.utils.Resources;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -20,11 +21,11 @@ public class ScheduleServlet extends HttpServlet {
     CreditCalculationService creditCalculationService = new CreditCalculationService();
 
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    public void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         CreditData creditData = RequestMapper.mapToCreditData(req);
         if(creditData == null) {
             req.setAttribute("error", true);
-            req.getRequestDispatcher("index.jsp").forward(req, resp);
+            req.getRequestDispatcher(Resources.IndexJsp).forward(req, resp);
             return;
         }
         List<PaymentsScheduleItem> paymentsScheduleItems = creditCalculationService.calculate(creditData);
@@ -33,8 +34,7 @@ public class ScheduleServlet extends HttpServlet {
 
     private void forwardPaymentsSchedule(HttpServletRequest req, HttpServletResponse resp, List paymentsScheduleItems)
             throws ServletException, IOException {
-        String nextJSP = "/jsp/paymentsSchedule.jsp";
-        RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(nextJSP);
+        RequestDispatcher dispatcher = req.getRequestDispatcher(Resources.PaymentsScheduleJsp);
         req.setAttribute("paymentsScheduleList", paymentsScheduleItems);
         dispatcher.forward(req, resp);
     }

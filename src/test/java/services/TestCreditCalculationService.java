@@ -11,7 +11,7 @@ import java.util.List;
 
 import static junit.framework.TestCase.assertEquals;
 
-public class TestCreditCalculationService extends Mockito {
+public class TestCreditCalculationService {
 
     @Test
     public void calculate_ShouldReturn_TheSameNumberOfPaymentsScheduleItems_AsInstallmentsNumber() {
@@ -24,7 +24,7 @@ public class TestCreditCalculationService extends Mockito {
     }
 
     @Test
-    public void calculate_ShouldReturn_CorrectCalculations_ForConstantInstallments() {
+    public void calculate_ShouldReturn_CorrectCalculationResults_ForConstantInstallments() {
         CreditCalculationService creditCalculationService = new CreditCalculationService();
         CreditData creditData = new CreditData(200000, 360, 7.5, 0, InstallmentsType.CONSTANT);
 
@@ -47,7 +47,7 @@ public class TestCreditCalculationService extends Mockito {
     }
 
     @Test
-    public void calculate_ShouldReturn_CorrectCalculations_ForDecreasingInstallments() {
+    public void calculate_ShouldReturn_CorrectCalculationResults_ForDecreasingInstallments() {
         CreditCalculationService creditCalculationService = new CreditCalculationService();
         CreditData creditData = new CreditData(200000, 360, 7.5, 0, InstallmentsType.DECREASING);
 
