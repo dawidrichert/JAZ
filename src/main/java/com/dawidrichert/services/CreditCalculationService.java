@@ -13,11 +13,7 @@ public class CreditCalculationService {
         if (InstallmentsType.DECREASING.equals(creditData.getInstallmentsType())) {
             return calculateDecreasingCreditInstallment(creditData);
         } else {
-            return calculateConstantCreditInstallment(
-                    creditData.getRequestedCreditAmount(),
-                    creditData.getInstallmentsNumber(),
-                    creditData.getRateOfInterest(),
-                    creditData.getFixedFee());
+            return calculateConstantCreditInstallment(creditData);
         }
     }
 
@@ -67,10 +63,6 @@ public class CreditCalculationService {
         return paymentsScheduleList;
     }
 
-    private double roundDouble(double variable) {
-        return Math.round(variable * 100.00) / 100.00;
-    }
-
     private double calculateInstallment(double creditAmount, int installmentsNumber, double rateOfInterest) {
         double q1 = rateOfInterest * 0.01 / 12;
         double q2 = 1;
@@ -79,5 +71,9 @@ public class CreditCalculationService {
             q2 = q2 * (1 + q1);
         }
         return creditAmount * q2 * q1 / (q2 - 1);
+    }
+
+    private double roundDouble(double variable) {
+        return Math.round(variable * 100.0) / 100.0;
     }
 }
