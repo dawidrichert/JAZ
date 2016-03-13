@@ -20,13 +20,14 @@ public class ScheduleServlet extends HttpServlet {
     CreditCalculationService creditCalculationService = new CreditCalculationService();
 
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        super.doGet(req, resp);
-    }
-
-    @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         CreditData creditData = RequestMapper.mapToCreditData(req);
+        if(creditData == null) {
+            req.setAttribute("error", true);
+            req.getRequestDispatcher("index.jsp").forward(req, resp);
+            return;
+        }
+        req.setAttribute("message", null);
         List<PaymentsScheduleItem> paymentsScheduleItems = creditCalculationService.calculate(creditData);
         forwardPaymentsSchedule(req, resp, paymentsScheduleItems);
     }

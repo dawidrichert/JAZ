@@ -12,6 +12,14 @@ import java.util.List;
 
 public class PdfService {
 
+    private static final String fileName = "Harmonogram";
+    private static final String[] columns = { "Nr raty", "Kwota Kapitału", "Kwota odsetek", "Opłaty stałe", "Całkowita kwota raty"};
+    private static final float[] columnWidths = { 1, 2f, 2f, 2f, 3f };
+    private static final float marginLeft = 0;
+    private static final float marginTop = 30;
+    private static final float marginRight = 0;
+    private static final float marginBottom = 30;
+
     private static Font font;
 
     public PdfService() {
@@ -24,40 +32,36 @@ public class PdfService {
     }
 
     public void generate(HttpServletResponse resp, List<PaymentsScheduleItem> paymentsScheduleItems) {
-        Document document = new Document(PageSize.A4, 0, 0, 30, 30);
+        Document document = new Document(PageSize.A4, marginLeft, marginRight, marginTop, marginBottom);
         try {
             resp.setContentType("application/pdf");
-            resp.setHeader("content-disposition","attachment; filename="+"Harmonogram.pdf");
+            resp.setHeader("content-disposition","attachment; filename="+ fileName + ".pdf");
             PdfWriter.getInstance(document, resp.getOutputStream());
             document.open();
 
-            PdfPTable table = new PdfPTable(5);
-
-            table.addCell(getHeaderCell("Nr raty"));
-            table.addCell(getHeaderCell("Kwota Kapitału"));
-            table.addCell(getHeaderCell("Kwota odsetek"));
-            table.addCell(getHeaderCell("Opłaty stałe"));
-            table.addCell(getHeaderCell("Całkowita kwota raty"));
+            PdfPTable table = new PdfPTable(columns.length);
+            for (String columnName : columns) {
+                table.addCell(headerCell(columnName));
+            }
 
             table.setHeaderRows(1);
-            table.setWidths(new float[] {1, 2f, 2f, 2f, 3f });
+            table.setWidths(columnWidths);
 
             for(PaymentsScheduleItem item : paymentsScheduleItems) {
                 table.addCell(String.valueOf(item.getInstallmentNumber()));
-                table.addCell(String.valueOf(item.getCapitalAmount()));
-                table.addCell(String.valueOf(item.getInterestAmount()));
-                table.addCell(String.valueOf(item.getFixedFee()));
-                table.addCell(String.valueOf(item.getTotalPaymentsAmount()));
+                table.addCell(String.format("%.2f", item.getCapitalAmount()));
+                table.addCell(String.format("%.2f", item.getInterestAmount()));
+                table.addCell(String.format("%.2f", item.getFixedFee()));
+                table.addCell(String.format("%.2f", item.getTotalPaymentsAmount()));
             }
             document.add(table);
-
         } catch (Exception e) {
             e.printStackTrace();
         }
         document.close();
     }
 
-    private PdfPCell getHeaderCell(String text) {
+    private PdfPCell headerCell(String text) {
         PdfPCell cell = new PdfPCell(new Paragraph(text, font));
         cell.setBackgroundColor(BaseColor.LIGHT_GRAY);
         cell.setVerticalAlignment(Element.ALIGN_MIDDLE);

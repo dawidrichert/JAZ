@@ -31,7 +31,7 @@ public class PaymentsScheduleItem {
     }
 
     public void setCapitalAmount(double capitalAmount) {
-        this.capitalAmount = capitalAmount;
+        this.capitalAmount = roundDouble(capitalAmount);
     }
 
     public double getInterestAmount() {
@@ -39,7 +39,7 @@ public class PaymentsScheduleItem {
     }
 
     public void setInterestAmount(double interestAmount) {
-        this.interestAmount = interestAmount;
+        this.interestAmount = roundDouble(interestAmount);
     }
 
     public double getFixedFee() {
@@ -47,7 +47,7 @@ public class PaymentsScheduleItem {
     }
 
     public void setFixedFee(double fixedFee) {
-        this.fixedFee = fixedFee;
+        this.fixedFee = roundDouble(fixedFee);
     }
 
     public double getTotalPaymentsAmount() {
@@ -55,6 +55,10 @@ public class PaymentsScheduleItem {
     }
 
     public void setTotalPaymentsAmount(double totalPaymentsAmount) {
-        this.totalPaymentsAmount = totalPaymentsAmount;
+        this.totalPaymentsAmount = roundDouble(totalPaymentsAmount);
+    }
+
+    private double roundDouble(double variable) {
+        return Math.round(variable * 100.0) / 100.0;
     }
 }

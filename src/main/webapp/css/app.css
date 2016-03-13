@@ -1,9 +1,10 @@
-.vertical-center {
-    min-height: 100%;
-    display: flex;
-    align-items: center;
+.center-element {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
 .container {
-    margin-top: 200px;
+    margin-top: 150px;
 }

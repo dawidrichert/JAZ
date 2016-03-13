@@ -38,7 +38,6 @@ public class TestCreditCalculationService extends Mockito {
         assertEquals(1250.0, firstElement.getInterestAmount());
         assertEquals(0.0, firstElement.getFixedFee());
         assertEquals(1398.43, firstElement.getTotalPaymentsAmount());
-
         // Last element
         assertEquals(360, lastElement.getInstallmentNumber());
         assertEquals(1389.74, lastElement.getCapitalAmount());
@@ -62,7 +61,6 @@ public class TestCreditCalculationService extends Mockito {
         assertEquals(1250.0, firstElement.getInterestAmount());
         assertEquals(0.0, firstElement.getFixedFee());
         assertEquals(1805.56, firstElement.getTotalPaymentsAmount());
-
         // Last element
         assertEquals(360, lastElement.getInstallmentNumber());
         assertEquals(555.56, lastElement.getCapitalAmount());

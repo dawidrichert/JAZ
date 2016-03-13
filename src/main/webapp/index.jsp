@@ -1,4 +1,6 @@
-﻿<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+﻿<%@ page import="com.dawidrichert.utils.JspHelpers" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE HTML>
 <html>
     <head>
@@ -11,26 +13,39 @@
         <script src="../js/bootstrap.min.js"></script>
     </head>
     <body>
-        <div class="vertical-center">
-            <div class="container col-sm-4">
+        <div class="container">
+            <div class="center-element col-sm-4">
                 <h2>Zadanie 1</h2>
                 </br>
                 <form action="harmonogram" method="post" role="form">
+                    <c:choose>
+                        <c:when test="${not empty error}">
+                            <div class="alert alert-danger">
+                                <p>Wprowadzone dane są niekompletne lub niepoprawne.</p>
+                                <p>Pamiętaj o wypełnieniu wszystkich pól.</p>
+                            </div>
+                        </c:when>
+                        <c:otherwise>
+                            <div class="alert alert-info">
+                                <p>Wypełnij wszystkie pola.</p>
+                            </div>
+                        </c:otherwise>
+                    </c:choose>
                     <div class="form-group">
                         <label for="requestedCreditAmount">Wnioskowana kwota kredytu</label>
-                        <input class="form-control" type="number" step="any" min="500" max="9999999999" id="requestedCreditAmount" name="requestedCreditAmount" required/>
+                        <input value="<%=JspHelpers.emptyIfNull(request.getParameter("requestedCreditAmount"))%>" class="form-control" type="number" step="any" min="500" max="9999999999" id="requestedCreditAmount" name="requestedCreditAmount" required/>
                     </div>
                     <div class="form-group">
                         <label for="installmentsNumber">Ilość rat</label>
-                        <input class="form-control" type="number" min="1" max="1200" id="installmentsNumber" name="installmentsNumber" required/>
+                        <input value="<%=JspHelpers.emptyIfNull(request.getParameter("installmentsNumber"))%>" class="form-control" type="number" min="1" max="1200" id="installmentsNumber" name="installmentsNumber" required/>
                     </div>
                     <div class="form-group">
                         <label for="rateOfInterest">Oprocentowanie</label>
-                        <input class="form-control" type="number" step="any" min="0" max="50" id="rateOfInterest" name="rateOfInterest" required/>
+                        <input value="<%=JspHelpers.emptyIfNull(request.getParameter("rateOfInterest"))%>" class="form-control" type="number" step="any" min="0" max="50" id="rateOfInterest" name="rateOfInterest" required/>
                     </div>
                     <div class="form-group">
                         <label for="fixedFee">Opłata stała</label>
-                        <input class="form-control" type="number" step="any" min="0" id="fixedFee" name="fixedFee" required/>
+                        <input value="<%=JspHelpers.emptyIfNull(request.getParameter("fixedFee"))%>" class="form-control" type="number" step="any" min="0" id="fixedFee" name="fixedFee" required/>
                     </div>
                     <div class="form-group">
                         <label for="installmentsType1">Rodzaj rat</label>

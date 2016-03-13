@@ -29,10 +29,10 @@ public class CreditCalculationService {
 
             PaymentsScheduleItem paymentsScheduleItem = new PaymentsScheduleItem();
             paymentsScheduleItem.setInstallmentNumber(i + 1);
-            paymentsScheduleItem.setCapitalAmount(roundDouble(d2));
-            paymentsScheduleItem.setInterestAmount(roundDouble(d3));
+            paymentsScheduleItem.setCapitalAmount(d2);
+            paymentsScheduleItem.setInterestAmount(d3);
             paymentsScheduleItem.setFixedFee(creditData.getFixedFee());
-            paymentsScheduleItem.setTotalPaymentsAmount(roundDouble(d1 + creditData.getFixedFee()));
+            paymentsScheduleItem.setTotalPaymentsAmount(d1 + creditData.getFixedFee());
 
             paymentsScheduleList.add(paymentsScheduleItem);
         }
@@ -52,10 +52,10 @@ public class CreditCalculationService {
 
             PaymentsScheduleItem paymentsScheduleItem = new PaymentsScheduleItem();
             paymentsScheduleItem.setInstallmentNumber(i + 1);
-            paymentsScheduleItem.setCapitalAmount(roundDouble(installment - interest));
-            paymentsScheduleItem.setInterestAmount(roundDouble(interest));
+            paymentsScheduleItem.setCapitalAmount(installment - interest);
+            paymentsScheduleItem.setInterestAmount(interest);
             paymentsScheduleItem.setFixedFee(creditData.getFixedFee());
-            paymentsScheduleItem.setTotalPaymentsAmount(roundDouble(installment + creditData.getFixedFee()));
+            paymentsScheduleItem.setTotalPaymentsAmount(installment + creditData.getFixedFee());
 
             paymentsScheduleList.add(paymentsScheduleItem);
         }
@@ -71,9 +71,5 @@ public class CreditCalculationService {
             q2 = q2 * (1 + q1);
         }
         return creditAmount * q2 * q1 / (q2 - 1);
-    }
-
-    private double roundDouble(double variable) {
-        return Math.round(variable * 100.0) / 100.0;
     }
 }

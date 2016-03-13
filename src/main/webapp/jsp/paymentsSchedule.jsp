@@ -44,7 +44,7 @@
                             <td><fmt:formatNumber type="number" minFractionDigits="2" maxFractionDigits="2" value="${paymentsScheduleItem.capitalAmount}"/></td>
                             <td><fmt:formatNumber type="number" minFractionDigits="2" maxFractionDigits="2" value="${paymentsScheduleItem.interestAmount}"/></td>
                             <td><fmt:formatNumber type="number" minFractionDigits="2" maxFractionDigits="2" value="${paymentsScheduleItem.fixedFee}"/></td>
-                            <td><strong><fmt:formatNumber type="number" value="${paymentsScheduleItem.totalPaymentsAmount}"/></strong></td>
+                            <td><strong><fmt:formatNumber type="number" minFractionDigits="2" maxFractionDigits="2" value="${paymentsScheduleItem.totalPaymentsAmount}"/></strong></td>
                         </tr>
                     </c:forEach>
                 </table>
