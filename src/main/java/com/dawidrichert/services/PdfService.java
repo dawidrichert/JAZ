@@ -31,7 +31,7 @@ public class PdfService {
         }
     }
 
-    public void generate(HttpServletResponse resp, List<PaymentsScheduleItem> paymentsScheduleItems) {
+    public void generateDocument(HttpServletResponse resp, List<PaymentsScheduleItem> paymentsScheduleItems) {
         Document document = new Document(PageSize.A4, marginLeft, marginRight, marginTop, marginBottom);
         try {
             resp.setContentType("application/pdf");
@@ -39,26 +39,32 @@ public class PdfService {
             PdfWriter.getInstance(document, resp.getOutputStream());
             document.open();
 
-            PdfPTable table = new PdfPTable(columns.length);
-            for (String columnName : columns) {
-                table.addCell(headerCell(columnName));
-            }
+            PdfPTable table = generateTable(paymentsScheduleItems);
 
-            table.setHeaderRows(1);
-            table.setWidths(columnWidths);
-
-            for(PaymentsScheduleItem item : paymentsScheduleItems) {
-                table.addCell(String.valueOf(item.getInstallmentNumber()));
-                table.addCell(String.format("%.2f", item.getCapitalAmount()));
-                table.addCell(String.format("%.2f", item.getInterestAmount()));
-                table.addCell(String.format("%.2f", item.getFixedFee()));
-                table.addCell(String.format("%.2f", item.getTotalPaymentsAmount()));
-            }
             document.add(table);
         } catch (Exception e) {
             e.printStackTrace();
         }
         document.close();
+    }
+
+    private PdfPTable generateTable(List<PaymentsScheduleItem> paymentsScheduleItems) throws DocumentException {
+        PdfPTable table = new PdfPTable(columns.length);
+        for (String columnName : columns) {
+            table.addCell(headerCell(columnName));
+        }
+
+        table.setHeaderRows(1);
+        table.setWidths(columnWidths);
+
+        for(PaymentsScheduleItem item : paymentsScheduleItems) {
+            table.addCell(String.valueOf(item.getInstallmentNumber()));
+            table.addCell(String.format("%.2f", item.getCapitalAmount()));
+            table.addCell(String.format("%.2f", item.getInterestAmount()));
+            table.addCell(String.format("%.2f", item.getFixedFee()));
+            table.addCell(String.format("%.2f", item.getTotalPaymentsAmount()));
+        }
+        return table;
     }
 
     private PdfPCell headerCell(String text) {

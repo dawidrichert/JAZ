@@ -24,6 +24,6 @@ public class PdfServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         CreditData creditData = RequestMapper.mapToCreditData(req);
         List<PaymentsScheduleItem> paymentsScheduleItems = creditCalculationService.calculate(creditData);
-        pdfService.generate(resp, paymentsScheduleItems);
+        pdfService.generateDocument(resp, paymentsScheduleItems);
     }
 }
