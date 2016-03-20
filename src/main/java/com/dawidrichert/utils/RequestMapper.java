@@ -1,23 +1,23 @@
 package com.dawidrichert.utils;
 
-import com.dawidrichert.models.enums.InstallmentsType;
-import com.dawidrichert.models.CreditData;
-import org.springframework.web.bind.ServletRequestUtils;
+import com.dawidrichert.viewModels.LoginViewModel;
+import com.dawidrichert.viewModels.RegisterViewModel;
 
 import javax.servlet.http.HttpServletRequest;
 
 public class RequestMapper {
 
-    public static CreditData mapToCreditData(HttpServletRequest req) {
-        try {
-            return new CreditData(
-                    ServletRequestUtils.getDoubleParameter(req, CreditData.requestedCreditAmountKey),
-                    ServletRequestUtils.getIntParameter(req, CreditData.installmentsNumberKey),
-                    ServletRequestUtils.getDoubleParameter(req, CreditData.rateOfInterestKey),
-                    ServletRequestUtils.getDoubleParameter(req, CreditData.fixedFeeKey),
-                    InstallmentsType.values()[ServletRequestUtils.getIntParameter(req, CreditData.installmentsTypeKey)]);
-        } catch (Exception e) {
-            return null;
-        }
+    public static LoginViewModel mapToLoginViewModel(HttpServletRequest req) {
+        return new LoginViewModel(
+                req.getParameter(LoginViewModel.userNameKey),
+                req.getParameter(LoginViewModel.passwordKey));
+    }
+
+    public static RegisterViewModel mapRegisterViewModel(HttpServletRequest req) {
+        return new RegisterViewModel(
+                req.getParameter(RegisterViewModel.userNameKey),
+                req.getParameter(RegisterViewModel.passwordKey),
+                req.getParameter(RegisterViewModel.confirmPasswordKey),
+                req.getParameter(RegisterViewModel.emailKey));
     }
 }

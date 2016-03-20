@@ -2,6 +2,12 @@ package com.dawidrichert.utils;
 
 public class Resources {
 
-    public static final String PaymentsScheduleJsp = "/jsp/paymentsSchedule.jsp";
-    public static final String IndexJsp = "/index.jsp";
+    // jsp
+    public static final String loginJsp = "/jsp/login.jsp";
+    public static final String registerJsp = "/jsp/register.jsp";
+    public static final String userProfileJsp = "/jsp/userProfile.jsp";
+    public static final String indexJsp = "/index.jsp";
+
+    // urls
+    public static final String registerUrl = "/register";
 }
