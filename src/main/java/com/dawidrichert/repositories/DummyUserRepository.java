@@ -1,13 +1,11 @@
 package com.dawidrichert.repositories;
 
 import com.dawidrichert.models.User;
-
-import java.util.ArrayList;
 import java.util.List;
 
 public class DummyUserRepository implements UserRepository {
 
-    private static List<User> users = new ArrayList<User>();
+    private static List<User> users = DummyData.users;
 
     @Override
     public void add(User user) {

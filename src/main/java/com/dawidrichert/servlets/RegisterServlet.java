@@ -44,9 +44,7 @@ public class RegisterServlet extends HttpServlet {
             }
 
             userService.addUser(registerViewModel);
-
-            req.setAttribute("successMessage", "Your account has been added. You can log in now.");
-            JspHelpers.forwardTo(req, resp, Resources.loginJsp);
+            resp.sendRedirect(Resources.loginUrl + "?registered=true");
         } else {
             req.setAttribute("errorMessage", "All fields are required.");
             JspHelpers.forwardTo(req, resp, Resources.registerJsp);

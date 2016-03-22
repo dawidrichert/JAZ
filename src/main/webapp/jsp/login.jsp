@@ -42,11 +42,44 @@
                        class="form-control" type="password" id="<%=LoginViewModel.passwordKey%>"
                        name="<%=LoginViewModel.passwordKey%>" required/>
             </div>
-            <div class="form-group pull-right">
+            <div class="form-group text-right">
                 <a class="btn btn-danger" href="<%=Resources.registerUrl%>">Register</a>
                 <input class="btn btn-primary" type="submit" value="Login"/>
             </div>
         </form>
+        <div class="panel-group">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <a data-toggle="collapse" href="#collapseSampleAccountsPanel">Sample accounts</a>
+                    </h4>
+                </div>
+                <div id="collapseSampleAccountsPanel" class="panel-collapse collapse in">
+                    <table class="table">
+                        <tr>
+                            <th>Username</th>
+                            <th>Password</th>
+                            <th>Role</th>
+                        </tr>
+                        <tr>
+                            <td>john</td>
+                            <td>potato</td>
+                            <td>Basic</td>
+                        </tr>
+                        <tr>
+                            <td>olivia</td>
+                            <td>potato</td>
+                            <td>Premium</td>
+                        </tr>
+                        <tr>
+                            <td>chris</td>
+                            <td>potato</td>
+                            <td>Admin</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 </body>

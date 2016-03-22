@@ -1,7 +1,14 @@
 package com.dawidrichert.filters;
 
-/**
- * Created by dawidrichert on 20.03.2016.
- */
-public class UserProfileFilter {
+import com.dawidrichert.models.enums.Permission;
+
+import javax.servlet.annotation.WebFilter;
+
+@WebFilter("/profile")
+public class UserProfileFilter extends PermissionFilter {
+
+    @Override
+    public Permission getPermission() {
+        return Permission.PROFILE;
+    }
 }

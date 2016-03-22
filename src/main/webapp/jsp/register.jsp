@@ -46,7 +46,7 @@
                        class="form-control" type="email" id="<%=RegisterViewModel.emailKey%>"
                        name="<%=RegisterViewModel.emailKey%>" required/>
             </div>
-            <div class="form-group pull-right">
+            <div class="form-group text-right">
                 <a class="btn btn-default" href="${pageContext.request.contextPath}/">Cancel</a>
                 <input class="btn btn-primary" type="submit" value="Register"/>
             </div>

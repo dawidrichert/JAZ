@@ -1,7 +1,5 @@
 package com.dawidrichert.models;
 
-import com.dawidrichert.models.enums.UserRole;
-
 public class User {
 
     private String userName;

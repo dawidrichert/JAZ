@@ -15,6 +15,8 @@ public class UserProfileServlet extends HttpServlet {
 
     @Override
     public void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        String username = req.getSession().getAttribute("username").toString();
+        req.setAttribute("username", username);
         JspHelpers.forwardTo(req, resp, Resources.userProfileJsp);
     }
 

@@ -21,19 +21,29 @@ public class LoginServlet extends HttpServlet {
     private UserRepository userRepository = new DummyUserRepository();
 
     @Override
+    public void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        if("true".equals(req.getParameter("registered"))) {
+            req.setAttribute("successMessage", "Your account has been added. You can log in now.");
+        }
+
+        JspHelpers.forwardTo(req, resp, Resources.loginJsp);
+    }
+
+    @Override
     public void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         LoginViewModel loginViewModel = RequestMapper.mapToLoginViewModel(req);
 
         User user = userRepository.findUserByUsername(loginViewModel.getUserName());
         if(user == null) {
             req.setAttribute("errorMessage", "Doesn't exist user with this username.");
-            JspHelpers.forwardTo(req, resp, Resources.registerJsp);
+            JspHelpers.forwardTo(req, resp, Resources.loginJsp);
         } else {
             if(user.getPassword().equals(loginViewModel.getPassword())) {
-                JspHelpers.forwardTo(req, resp, Resources.userProfileJsp);
+                req.getSession().setAttribute("username", user.getUserName());
+                resp.sendRedirect(Resources.userProfileUrl);
             } else {
                 req.setAttribute("errorMessage", "Incorrect password for this user.");
-                JspHelpers.forwardTo(req, resp, Resources.registerJsp);
+                JspHelpers.forwardTo(req, resp, Resources.loginJsp);
             }
         }
     }
