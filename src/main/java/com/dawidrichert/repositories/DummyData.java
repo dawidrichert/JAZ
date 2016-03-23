@@ -6,6 +6,7 @@ import com.dawidrichert.models.enums.Permission;
 
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.LinkedList;
 import java.util.List;
 
 public class DummyData {
@@ -22,8 +23,8 @@ public class DummyData {
     public static UserRole roleAdmin = new UserRole("ADMIN", Arrays.asList(
             Permission.PROFILE, Permission.PREMIUM, Permission.PREMIUM_MANAGER));
 
-    public static List<User> users = Arrays.asList(
+    public static List<User> users = new LinkedList<>(Arrays.asList(
             new User("john", "potato", "john@demo.com", Collections.singletonList(roleBasic)),
             new User("olivia", "potato", "olivia@demo.com", Arrays.asList(roleBasic, rolePremium)),
-            new User("chris", "potato", "chris@demo.com", Arrays.asList(roleBasic, rolePremium, roleAdmin)));
+            new User("chris", "potato", "chris@demo.com", Arrays.asList(roleBasic, rolePremium, roleAdmin))));
 }
