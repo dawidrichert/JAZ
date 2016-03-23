@@ -4,7 +4,6 @@ import com.dawidrichert.models.User;
 import com.dawidrichert.models.UserRole;
 import com.dawidrichert.models.enums.Permission;
 import com.dawidrichert.repositories.DummyData;
-import com.dawidrichert.repositories.UserRepository;
 import com.dawidrichert.services.UserService;
 
 import javax.servlet.RequestDispatcher;
@@ -28,7 +27,7 @@ public class JspHelpers {
 
     public static void forwardTo(HttpServletRequest req, HttpServletResponse resp, String destination)
             throws ServletException, IOException {
-        RequestDispatcher rd = req.getServletContext().getRequestDispatcher(destination);
+        RequestDispatcher rd = req.getRequestDispatcher(destination);
         rd.forward(req, resp);
     }
 
