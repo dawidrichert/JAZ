@@ -13,7 +13,7 @@ import java.io.IOException;
 public class LoginFilter extends PermissionFilter {
 
     @Override
-    public Permission getPermission() {
+    protected Permission getPermission() {
         return Permission.LOGIN;
     }
 

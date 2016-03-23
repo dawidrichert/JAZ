@@ -11,19 +11,19 @@ import java.util.List;
 
 public class DummyData {
 
-    public static UserRole roleAnonymous = new UserRole("BASIC", Arrays.asList(
+    public static final UserRole roleAnonymous = new UserRole("BASIC", Arrays.asList(
             Permission.LOGIN, Permission.REGISTER));
 
-    public static UserRole roleBasic = new UserRole("BASIC", Collections.singletonList(
+    public static final UserRole roleBasic = new UserRole("BASIC", Collections.singletonList(
             Permission.PROFILE));
 
-    public static UserRole rolePremium = new UserRole("PREMIUM", Arrays.asList(
+    public static final UserRole rolePremium = new UserRole("PREMIUM", Arrays.asList(
             Permission.PROFILE, Permission.PREMIUM));
 
-    public static UserRole roleAdmin = new UserRole("ADMIN", Arrays.asList(
+    public static final UserRole roleAdmin = new UserRole("ADMIN", Arrays.asList(
             Permission.PROFILE, Permission.PREMIUM, Permission.PREMIUM_MANAGER));
 
-    public static List<User> users = new LinkedList<>(Arrays.asList(
+    public static final List<User> users = new LinkedList<>(Arrays.asList(
             new User("john", "potato", "john@demo.com", Collections.singletonList(roleBasic)),
             new User("olivia", "potato", "olivia@demo.com", Arrays.asList(roleBasic, rolePremium)),
             new User("chris", "potato", "chris@demo.com", Arrays.asList(roleBasic, rolePremium, roleAdmin))));

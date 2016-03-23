@@ -8,7 +8,7 @@
 <c:set var="bodyContent">
     <h3>Hi <%=request.getAttribute("username")%>!</h3>
     <h5>What you want to do?</h5>
-    </br>
+    <br/>
     <form method="link" action="/jsp/logout.jsp">
     <c:if test='<%=JspHelpers.hasPermission((String)session.getAttribute("username"), Permission.PREMIUM)%>'>
         <a class="btn btn-success" href="<%=Resources.premiumUrl%>">Premium</a>

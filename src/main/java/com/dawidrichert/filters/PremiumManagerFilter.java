@@ -8,7 +8,7 @@ import javax.servlet.annotation.WebFilter;
 public class PremiumManagerFilter extends PermissionFilter {
 
     @Override
-    public Permission getPermission() {
+    protected Permission getPermission() {
         return Permission.PREMIUM_MANAGER;
     }
 }

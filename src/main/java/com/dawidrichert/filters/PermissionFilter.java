@@ -1,7 +1,6 @@
 package com.dawidrichert.filters;
 
 import com.dawidrichert.models.enums.Permission;
-import com.dawidrichert.services.UserService;
 import com.dawidrichert.utils.JspHelpers;
 import com.dawidrichert.utils.Resources;
 
@@ -12,7 +11,7 @@ import java.io.IOException;
 
 abstract class PermissionFilter implements Filter {
 
-    public abstract Permission getPermission();
+    protected abstract Permission getPermission();
 
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain)

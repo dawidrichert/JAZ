@@ -5,7 +5,7 @@ import java.util.List;
 
 public class DummyUserRepository implements UserRepository {
 
-    private static List<User> users = DummyData.users;
+    private static final List<User> users = DummyData.users;
 
     @Override
     public void add(User user) {

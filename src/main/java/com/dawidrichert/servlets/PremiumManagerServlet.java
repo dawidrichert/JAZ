@@ -14,7 +14,7 @@ import java.io.IOException;
 @WebServlet("/premiumManager")
 public class PremiumManagerServlet extends HttpServlet {
 
-    private UserService userService = new UserService();
+    private final UserService userService = new UserService();
 
     @Override
     public void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

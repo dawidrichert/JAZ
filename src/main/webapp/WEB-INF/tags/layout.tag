@@ -15,7 +15,7 @@
 <div class="container">
     <div class="center-element col-sm-4">
         <h2>${pageTitle}</h2>
-        </br>
+        <br/>
         <jsp:doBody/>
     </div>
 </div>

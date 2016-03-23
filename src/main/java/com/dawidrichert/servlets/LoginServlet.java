@@ -18,7 +18,7 @@ import java.io.IOException;
 @WebServlet("/login")
 public class LoginServlet extends HttpServlet {
 
-    private UserRepository userRepository = new DummyUserRepository();
+    private final UserRepository userRepository = new DummyUserRepository();
 
     @Override
     public void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

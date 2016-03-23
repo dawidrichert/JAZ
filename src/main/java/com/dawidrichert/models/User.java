@@ -48,10 +48,6 @@ public class User {
         return userRoles;
     }
 
-    public void setUserRoles(List<UserRole> userRoles) {
-        this.userRoles = new LinkedList(userRoles);
-    }
-
     public void addUserRole(UserRole userRole) {
         this.userRoles.add(userRole);
     }

@@ -8,7 +8,7 @@ import javax.servlet.annotation.WebFilter;
 public class UserProfileFilter extends PermissionFilter {
 
     @Override
-    public Permission getPermission() {
+    protected Permission getPermission() {
         return Permission.PROFILE;
     }
 }
