@@ -24,12 +24,12 @@ abstract class PermissionFilter implements Filter {
         if(JspHelpers.hasPermission((String)request.getSession().getAttribute("username"), getPermission())) {
             filterChain.doFilter(servletRequest, servletResponse);
         } else {
-            notPermissionAction(response);
+            notPermissionAction(request, response);
         }
     }
 
-    public void notPermissionAction(HttpServletResponse response) throws IOException {
-        response.sendRedirect(Resources.userProfileUrl);
+    public void notPermissionAction(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+        JspHelpers.forwardTo(request, response, Resources.noAccessJsp);
     }
 
     @Override

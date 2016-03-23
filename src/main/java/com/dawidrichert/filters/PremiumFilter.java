@@ -13,9 +13,4 @@ public class PremiumFilter extends PermissionFilter {
     public Permission getPermission() {
         return Permission.PREMIUM;
     }
-
-    @Override
-    public void notPermissionAction(HttpServletResponse response) throws IOException {
-        super.notPermissionAction(response);
-    }
 }

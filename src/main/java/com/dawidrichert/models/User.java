@@ -1,17 +1,23 @@
 package com.dawidrichert.models;
 
+import com.dawidrichert.models.enums.Permission;
+import com.dawidrichert.utils.JspHelpers;
+
+import java.util.LinkedList;
+import java.util.List;
+
 public class User {
 
     private String userName;
     private String password;
     private String email;
-    private UserRole userRole;
+    private LinkedList<UserRole> userRoles;
 
-    public User(String userName, String password, String email, UserRole userRole) {
+    public User(String userName, String password, String email, List<UserRole> userRoles) {
         this.userName = userName;
         this.password = password;
         this.email = email;
-        this.userRole = userRole;
+        this.userRoles = new LinkedList(userRoles);
     }
 
     public String getUserName() {
@@ -38,11 +44,27 @@ public class User {
         this.email = email;
     }
 
-    public UserRole getUserRole() {
-        return userRole;
+    public List<UserRole> getUserRoles() {
+        return userRoles;
     }
 
-    public void setUserRole(UserRole userRole) {
-        this.userRole = userRole;
+    public void setUserRoles(List<UserRole> userRoles) {
+        this.userRoles = new LinkedList(userRoles);
+    }
+
+    public void addUserRole(UserRole userRole) {
+        this.userRoles.add(userRole);
+    }
+
+    public void removeUserRole(UserRole userRole) {
+        this.userRoles.remove(userRole);
+    }
+
+    public boolean getHasPremiumAccess() {
+        return JspHelpers.hasPermission(userName, Permission.PREMIUM);
+    }
+
+    public boolean getHasPremiumManagerAccess() {
+        return JspHelpers.hasPermission(userName, Permission.PREMIUM_MANAGER);
     }
 }

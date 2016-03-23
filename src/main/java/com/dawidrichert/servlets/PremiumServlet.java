@@ -10,13 +10,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet("/profile")
-public class UserProfileServlet extends HttpServlet {
+@WebServlet("/premium")
+public class PremiumServlet extends HttpServlet {
 
     @Override
     public void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String username = req.getSession().getAttribute("username").toString();
-        req.setAttribute("username", username);
-        JspHelpers.forwardTo(req, resp, Resources.userProfileJsp);
+        JspHelpers.forwardTo(req, resp, Resources.premiumJsp);
     }
 }

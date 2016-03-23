@@ -3,9 +3,8 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
 <c:set var="bodyContent">
-    <h4 class="text-info">It's a premium page.</h4>
-    <a class="btn btn-default" href="${pageContext.request.contextPath}/">< Back</a>
+    <h4 class="text-danger">Sorry, you don't have access to see this page.</h4>
 </c:set>
-<t:layout pageTitle="Premium">
+<t:layout pageTitle="No access">
     ${bodyContent}
 </t:layout>

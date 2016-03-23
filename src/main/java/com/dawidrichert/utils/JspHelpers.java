@@ -35,14 +35,16 @@ public class JspHelpers {
     public static boolean hasPermission(String username, Permission permission) {
         UserService userService = new UserService();
 
-        UserRole userRole;
         if(username == null) {
-            userRole = DummyData.roleAnonymous;
+            return DummyData.roleAnonymous.getPermissions().contains(permission);
         } else {
             User user = userService.findUserByUsername(username);
-            userRole = user.getUserRole();
+            for(UserRole userRole : user.getUserRoles()) {
+                if(userRole.getPermissions().contains(permission)) {
+                    return true;
+                }
+            }
+            return false;
         }
-
-        return userRole.getPermissions().contains(permission);
     }
 }

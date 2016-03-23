@@ -14,7 +14,7 @@
         <a class="btn btn-success" href="<%=Resources.premiumUrl%>">Premium</a>
     </c:if>
     <c:if test='<%=JspHelpers.hasPermission((String)session.getAttribute("username"), Permission.PREMIUM_MANAGER)%>'>
-        <a class="btn btn-danger" href="<%=Resources.premiumUrl%>">Manage Premium Accounts</a>
+        <a class="btn btn-danger" href="<%=Resources.premiumManagerUrl%>">Manage Premium Accounts</a>
     </c:if>
     <input class="btn btn-primary" type="submit" value="Logout"/>
     </form>

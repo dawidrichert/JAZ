@@ -23,7 +23,7 @@ public class DummyData {
             Permission.PROFILE, Permission.PREMIUM, Permission.PREMIUM_MANAGER));
 
     public static List<User> users = Arrays.asList(
-            new User("john", "potato", "john@demo.com", roleBasic),
-            new User("olivia", "potato", "olivia@demo.com", rolePremium),
-            new User("chris", "potato", "chris@demo.com", roleAdmin));
+            new User("john", "potato", "john@demo.com", Collections.singletonList(roleBasic)),
+            new User("olivia", "potato", "olivia@demo.com", Arrays.asList(roleBasic, rolePremium)),
+            new User("chris", "potato", "chris@demo.com", Arrays.asList(roleBasic, rolePremium, roleAdmin)));
 }

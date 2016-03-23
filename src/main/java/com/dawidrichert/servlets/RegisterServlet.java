@@ -4,10 +4,8 @@ import com.dawidrichert.services.UserService;
 import com.dawidrichert.utils.JspHelpers;
 import com.dawidrichert.utils.RequestMapper;
 import com.dawidrichert.utils.Resources;
-import com.dawidrichert.utils.StringUtils;
 import com.dawidrichert.viewModels.RegisterViewModel;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;

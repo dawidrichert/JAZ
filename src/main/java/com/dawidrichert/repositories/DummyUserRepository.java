@@ -13,6 +13,11 @@ public class DummyUserRepository implements UserRepository {
     }
 
     @Override
+    public List<User> getAll() {
+        return users;
+    }
+
+    @Override
     public User findUserByUsername(String userName) {
         for(User user : users) {
             if(user.getUserName().equalsIgnoreCase(userName)) {
