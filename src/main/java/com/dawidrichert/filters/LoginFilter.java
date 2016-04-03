@@ -18,7 +18,7 @@ public class LoginFilter extends PermissionFilter {
     }
 
     @Override
-    public void notPermissionAction(HttpServletRequest request, HttpServletResponse response)
+    public void noPermissionAction(HttpServletRequest request, HttpServletResponse response)
             throws IOException, ServletException {
         response.sendRedirect(Resources.userProfileUrl);
     }
