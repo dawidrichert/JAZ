@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet("/premiumManager")
+@WebServlet(Resources.premiumManagerUrl)
 public class PremiumManagerServlet extends HttpServlet {
 
     private final UserService userService = new UserService();

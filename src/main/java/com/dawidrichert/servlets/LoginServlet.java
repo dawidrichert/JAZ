@@ -15,7 +15,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet("/login")
+@WebServlet(Resources.loginUrl)
 public class LoginServlet extends HttpServlet {
 
     private final UserRepository userRepository = new DummyUserRepository();

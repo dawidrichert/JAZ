@@ -11,7 +11,7 @@ import java.util.List;
 
 public class DummyData {
 
-    public static final UserRole roleAnonymous = new UserRole("BASIC", Arrays.asList(
+    public static final UserRole roleAnonymous = new UserRole("ANONYMOUS", Arrays.asList(
             Permission.LOGIN, Permission.REGISTER));
 
     public static final UserRole roleBasic = new UserRole("BASIC", Collections.singletonList(

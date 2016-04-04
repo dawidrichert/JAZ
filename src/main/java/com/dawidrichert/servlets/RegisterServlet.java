@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet("/register")
+@WebServlet(Resources.registerUrl)
 public class RegisterServlet extends HttpServlet {
 
     private final UserService userService = new UserService();

@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebFilter("/login")
+@WebFilter(Resources.loginUrl)
 public class LoginFilter extends PermissionFilter {
 
     @Override

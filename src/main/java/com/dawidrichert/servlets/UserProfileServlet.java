@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet("/profile")
+@WebServlet(Resources.userProfileUrl)
 public class UserProfileServlet extends HttpServlet {
 
     @Override
