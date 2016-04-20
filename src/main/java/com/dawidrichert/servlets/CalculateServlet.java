@@ -31,11 +31,11 @@ public class CalculateServlet extends HttpServlet {
 
         ContractType contractType = calculationData.getContractType();
         if(contractType != null) {
-            forwardPaymentsSchedule(req, resp, calculationService.calculate(calculationData), contractType.toString());
+            forwardResult(req, resp, calculationService.calculate(calculationData), contractType.toString());
         }
     }
 
-    private void forwardPaymentsSchedule(HttpServletRequest req, HttpServletResponse resp, List list, String type)
+    private void forwardResult(HttpServletRequest req, HttpServletResponse resp, List list, String type)
             throws ServletException, IOException {
         RequestDispatcher dispatcher = req.getRequestDispatcher(Resources.resultJsp);
         req.setAttribute("list", list);

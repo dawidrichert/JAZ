@@ -8,11 +8,15 @@ import com.dawidrichert.models.enums.DeductibleCosts;
 import com.dawidrichert.models.enums.PayType;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
 public class CalculationService {
+
+    private static final String[] months = {
+            "Styczeń", "Luty", "Marzec", "Kwiecień", "Maj", "Czerwiec",
+            "Lipiec", "Sierpień", "Wrzesień", "Październik", "Listopad", "Grudzień"
+    };
 
     public List calculate(CalculationData calculationData) {
         switch (calculationData.getContractType()) {
@@ -28,13 +32,10 @@ public class CalculationService {
 
     private List<PracaItem> calculateForPraca(CalculationData calculationData) {
 
-        String[] months = {"Styczeń", "Luty", "Marzec", "Kwiecień", "Maj", "Czerwiec", "Lipiec", "Sierpień",
-                "Wrzesień", "Październik", "Listopad", "Grudzień"};
-
         List<PracaItem> result = new ArrayList<>();
         double wynagrodzenieBrutto = calculationData.getSalary();
-        if(PayType.NETTO.equals(calculationData.getPayType())) {
-            wynagrodzenieBrutto = Math.floor((calculationData.getSalary()-66.365)/0.69680540);
+        if (PayType.NETTO.equals(calculationData.getPayType())) {
+            wynagrodzenieBrutto = Math.floor((calculationData.getSalary() - 66.365) / 0.69680540);
         }
         double emerytalne = wynagrodzenieBrutto * 0.0976;
         double rentowe = wynagrodzenieBrutto * 0.015;
@@ -59,7 +60,7 @@ public class CalculationService {
         }
         double potraceniaRazem = ubezpieczenia + ubezpieczenieZdrowotnePobrane + podatekDoZaplatyDoUrzeduSkarbowego;
         double doWyplatyNetto = wynagrodzenieBrutto - potraceniaRazem;
-        if(PayType.NETTO.equals(calculationData.getPayType())) {
+        if (PayType.NETTO.equals(calculationData.getPayType())) {
             doWyplatyNetto = calculationData.getSalary();
         }
 
@@ -74,24 +75,24 @@ public class CalculationService {
     private List<ZlecenieItem> calculateForZlecenie(CalculationData calculationData) {
 
         double wynagrodzenieBrutto = calculationData.getSalary();
-        if(PayType.NETTO.equals(calculationData.getPayType())) {
-            wynagrodzenieBrutto = Math.floor((calculationData.getSalary()-66.365)/0.69680540);
+        if (PayType.NETTO.equals(calculationData.getPayType())) {
+            wynagrodzenieBrutto = Math.floor((calculationData.getSalary() - 66.365) / 0.69680540);
         }
         double emerytalne = 0;
-        if(calculationData.isDisabilityContribution()) {
+        if (calculationData.isDisabilityContribution()) {
             emerytalne = wynagrodzenieBrutto * 0.0976;
         }
         double rentowe = 0;
-        if(calculationData.isPensionContribution()) {
+        if (calculationData.isPensionContribution()) {
             rentowe = wynagrodzenieBrutto * 0.015;
         }
         double chorobowe = 0;
-        if(calculationData.isSicknessContribution()) {
+        if (calculationData.isSicknessContribution()) {
             chorobowe = wynagrodzenieBrutto * 0.0245;
         }
         double razemSkladki = emerytalne + rentowe + chorobowe;
         double kosztyUzyskaniaPrzychodu;
-        if(DeductibleCosts.PERCENT_20.equals(calculationData.getDeductibleCosts())) {
+        if (DeductibleCosts.PERCENT_20.equals(calculationData.getDeductibleCosts())) {
             kosztyUzyskaniaPrzychodu = (wynagrodzenieBrutto - razemSkladki) * 0.2;
         } else {
             kosztyUzyskaniaPrzychodu = (wynagrodzenieBrutto - razemSkladki) * 0.5;
@@ -101,7 +102,7 @@ public class CalculationService {
         double zdrowotne = wynagrodzenieBrutto * 0.07766;
         double podatekDoZaplaty = Math.ceil((wynagrodzenieBrutto - razemSkladki - kosztyUzyskaniaPrzychodu) * 0.19 - zdrowotne);
         double doWyplatyNetto = wynagrodzenieBrutto - razemSkladki - podatekDoZaplaty - zdrowotne;
-        if(PayType.NETTO.equals(calculationData.getPayType())) {
+        if (PayType.NETTO.equals(calculationData.getPayType())) {
             doWyplatyNetto = calculationData.getSalary();
         }
 
@@ -112,11 +113,11 @@ public class CalculationService {
     private List<DzieloItem> calculateForDzielo(CalculationData calculationData) {
 
         double wynagrodzenieBrutto = calculationData.getSalary();
-        if(PayType.NETTO.equals(calculationData.getPayType())) {
+        if (PayType.NETTO.equals(calculationData.getPayType())) {
             wynagrodzenieBrutto = calculationData.getSalary() * 1.168225;
         }
         double kosztyUzyskaniaPrzychodu;
-        if(DeductibleCosts.PERCENT_20.equals(calculationData.getDeductibleCosts())) {
+        if (DeductibleCosts.PERCENT_20.equals(calculationData.getDeductibleCosts())) {
             kosztyUzyskaniaPrzychodu = wynagrodzenieBrutto * 0.2;
         } else {
             kosztyUzyskaniaPrzychodu = wynagrodzenieBrutto * 0.5;
@@ -124,7 +125,7 @@ public class CalculationService {
         double podstawaOpodatkowania = wynagrodzenieBrutto - kosztyUzyskaniaPrzychodu;
         double podatekDoZaplaty = podstawaOpodatkowania * 0.18;
         double doWyplatyNetto = wynagrodzenieBrutto - podatekDoZaplaty;
-        if(PayType.NETTO.equals(calculationData.getPayType())) {
+        if (PayType.NETTO.equals(calculationData.getPayType())) {
             doWyplatyNetto = calculationData.getSalary();
         }
 
