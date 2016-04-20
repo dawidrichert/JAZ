@@ -1,23 +1,29 @@
 package com.dawidrichert.utils;
 
-import com.dawidrichert.viewModels.LoginViewModel;
-import com.dawidrichert.viewModels.RegisterViewModel;
+import com.dawidrichert.models.CalculationData;
+import com.dawidrichert.models.enums.ContractType;
+import com.dawidrichert.models.enums.DeductibleCosts;
+import com.dawidrichert.models.enums.PayType;
+import org.springframework.web.bind.ServletRequestUtils;
 
 import javax.servlet.http.HttpServletRequest;
 
 public class RequestMapper {
 
-    public static LoginViewModel mapToLoginViewModel(HttpServletRequest req) {
-        return new LoginViewModel(
-                req.getParameter(LoginViewModel.userNameKey),
-                req.getParameter(LoginViewModel.passwordKey));
-    }
-
-    public static RegisterViewModel mapRegisterViewModel(HttpServletRequest req) {
-        return new RegisterViewModel(
-                req.getParameter(RegisterViewModel.userNameKey),
-                req.getParameter(RegisterViewModel.passwordKey),
-                req.getParameter(RegisterViewModel.confirmPasswordKey),
-                req.getParameter(RegisterViewModel.emailKey));
+    public static CalculationData mapToCalculationData(HttpServletRequest req) {
+        try {
+            return new CalculationData(
+                    ContractType.values()[ServletRequestUtils.getIntParameter(req, CalculationData.contractTypeKey)],
+                    ServletRequestUtils.getIntParameter(req, CalculationData.yearKey),
+                    ServletRequestUtils.getDoubleParameter(req, CalculationData.salaryKey),
+                    PayType.values()[ServletRequestUtils.getIntParameter(req, CalculationData.payTypeKey)],
+                    ServletRequestUtils.getBooleanParameter(req, CalculationData.disabilityContributionKey),
+                    ServletRequestUtils.getBooleanParameter(req, CalculationData.pensionContributionKey),
+                    ServletRequestUtils.getBooleanParameter(req, CalculationData.sicknessContributionKey),
+                    ServletRequestUtils.getBooleanParameter(req, CalculationData.healthCareContributionKey),
+                    DeductibleCosts.values()[ServletRequestUtils.getIntParameter(req, CalculationData.deductibleCostsKey)]);
+        } catch (Exception e) {
+            return null;
+        }
     }
 }
