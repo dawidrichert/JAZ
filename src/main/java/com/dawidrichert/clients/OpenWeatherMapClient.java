@@ -11,12 +11,12 @@ import java.util.Arrays;
 public class OpenWeatherMapClient {
 
     private static final String APPID = "2db0d53f079460a089d0eab40789e483";
+    private static final String currentWeatherUrlFormat = "http://api.openweathermap.org/data/2.5/forecast/city?q=%s&units=metric&lang=pl&APPID=%s";
 
     public CurrentWeatherData getCurrentWeather(String city) {
         if(Arrays.asList(Config.listOfAllowedCities).contains(city)) {
             try {
-                String json = readUrl("http://api.openweathermap.org/data/2.5/forecast/city?q=" + city +
-                        "&units=metric&lang=pl&APPID=" + APPID);
+                String json = readUrl(String.format(currentWeatherUrlFormat, city, APPID));
                 return new Gson().fromJson(json, CurrentWeatherData.class);
             } catch (Exception e) {
                 e.printStackTrace();
