@@ -10,13 +10,12 @@
     <link rel="stylesheet" href="../../css/app.css">
     <script src="../../js/jquery-1.12.1.min.js"></script>
     <script src="../../js/bootstrap.min.js"></script>
-    <script src="../../js/app.js"></script>
 </head>
 <body>
 <div class="container">
     <div>
         <div class="col-md-12">
-            <h2 class="text-info">${pageTitle}</h2>
+            <h2 class="text-center text-info">${pageTitle}</h2>
             <br>
             <br>
         </div>
