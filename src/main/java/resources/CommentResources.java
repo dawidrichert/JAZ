@@ -1,4 +1,4 @@
-package rest;
+package resources;
 
 import models.Comment;
 import services.CommentService;

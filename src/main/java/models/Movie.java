@@ -13,22 +13,24 @@ public class Movie {
     private String genres;
     private int year;
     private List<Comment> comments;
+    private List<Actor> actors;
     private List<Integer> ratings;
     private float rating;
 
     public Movie() { }
 
     public Movie(String name, String director, String genres, int year) {
-        this(name, director, genres, year, new LinkedList<>());
+        this(name, director, genres, year, new LinkedList<>(), new LinkedList<>());
     }
 
-    public Movie(String name, String director, String genres, int year, List<Comment> comments) {
+    public Movie(String name, String director, String genres, int year, List<Comment> comments, List<Actor> actors) {
         this.id = getNextId();
         this.name = name;
         this.director = director;
         this.genres = genres;
         this.year = year;
         this.comments = comments;
+        this.actors = actors;
         this.ratings = new LinkedList<>();
         this.rating = 0;
     }
@@ -83,6 +85,14 @@ public class Movie {
 
     public void setComments(List<Comment> comments) {
         this.comments = comments;
+    }
+
+    public List<Actor> getActors() {
+        return actors;
+    }
+
+    public void setActors(List<Actor> actors) {
+        this.actors = actors;
     }
 
     public void setRatings(List<Integer> ratings) {

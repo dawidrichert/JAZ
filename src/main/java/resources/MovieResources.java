@@ -1,5 +1,6 @@
-package rest;
+package resources;
 
+import models.Actor;
 import models.Comment;
 import models.Movie;
 import services.MovieService;
@@ -86,5 +87,16 @@ public class MovieResources {
         }
         movie.addRatingsValue(value);
         return Response.ok().build();
+    }
+
+    @GET
+    @Path("/{movieId}/actors")
+    @Produces(MediaType.APPLICATION_JSON)
+    public List<Actor> getActors(@PathParam("movieId") int movieId) {
+        Movie movie = movieService.get(movieId);
+        if(movie == null) {
+            return null;
+        }
+        return movie.getActors();
     }
 }

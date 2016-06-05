@@ -77,6 +77,37 @@
         <br>
         <strong>POST</strong> - Wystawienie oceny <strong>{ocena}</strong> w skali od 1 do 10 dla filmu o podanym <strong>id</strong>
     </li>
+    <br>
+    <li>
+        <a target="_blank" href="/api/rest/actors">/api/rest/actors</a>
+        <br>
+        <strong>POST</strong> - Dodanie aktora
+        <blockquote>
+            {
+                "firstName": "John",
+                "lastName": "Smith"
+            }
+        </blockquote>
+    </li>
+    <br>
+    <li>
+        <a target="_blank" href="/api/rest/actors/1/assign?movieId=4">/api/rest/actors/{id}/assign?movieId={movieId}</a>
+        <br>
+        <strong>POST</strong> - Przydzielenie filmu o podanym <strong>{movieId}</strong> aktorowi o podanym <strong>id</strong>
+    </li>
+    <br>
+    <li>
+        <a target="_blank" href="/api/rest/movies/1/actors">/api/rest/movies/{id}/actors</a>
+        <br>
+        <strong>GET</strong> - Wyświetlenie aktorów występujących w filmie o podanym <strong>id</strong>
+    </li>
+    <br>
+    <li>
+        <a target="_blank" href="/api/rest/actors/1/movies">/api/rest/actors/{id}/movies</a>
+        <br>
+        <strong>GET</strong> - Wyświetlenie filmów aktora o podanym <strong>id</strong>
+    </li>
+    <br>
 </ul>
 </body>
 </html>
